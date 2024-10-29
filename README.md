@@ -78,6 +78,5 @@ public class LimitFallback {
   }
   ```
   
-![Russian flag](https://user-images.githubusercontent.com/49895274/190373117-793295b2-246a-4707-a03b-11dc676793c4.png)
 
   
