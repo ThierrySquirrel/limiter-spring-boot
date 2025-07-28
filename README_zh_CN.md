@@ -20,8 +20,8 @@
 <!--在pom.xml中添加依赖-->
         <dependency>
             <artifactId>limiter-spring-boot-starter</artifactId>
-            <groupId>com.github.thierrysquirrel</groupId>
-            <version>2.1.1.4-RELEASE</version>
+            <groupId>io.github.thierrysquirrel</groupId>
+            <version>2.2.0.0-RELEASE</version>
         </dependency>
 ```
  
@@ -44,7 +44,7 @@
 public class LimitFallback {
     public String limit(String limit) {
         log.error (limit);
-        return limit;
+        return "LimitFallback";
     }
 }
 
@@ -52,7 +52,7 @@ public class LimitFallback {
  public class limitController {
     @LimitTraffic (limitName = "limit", permitsPerSecond = 2000, fallbackClass = LimitFallback.class, fallbackMethod = "limit")
  	public String limit(@RequestParam("limit") String limit) {
- 		return limit;
+ 		return "HelloLimit";
  	}
  }
  ```
@@ -65,7 +65,7 @@ public class LimitFallback {
  public class LimitedServiceFallback {
      public String limitedService(String limitedService) {
          log.error (limitedService);
-         return limitedService;
+         return "limitedServiceFallback";
      }
  }
  
@@ -73,7 +73,7 @@ public class LimitFallback {
   public class LimitedServiceController {
      @LimitedService (fallbackClass = LimitedServiceFallback.class, fallbackMethod = "limitedService")
   	public String limitedService(@RequestParam("limitedService") String limitedService) {
-  		return limitedService;
+  		return "limitedService";
   	}
   }
   ```
